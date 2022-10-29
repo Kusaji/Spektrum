@@ -5,16 +5,13 @@ using UnityEngine;
 public class NoteSpawner : MonoBehaviour
 {
     public List<GameObject> notes;
-    public GameObject lowNoteSpawnpoint;
-    public GameObject midNoteSpawnpoint;
-    public GameObject highNoteSpawnpoint;
-
+    public List<GameObject> spawnPoints;
 
     public void SpawnLowNote()
     {
         Instantiate(
             notes[0],
-            lowNoteSpawnpoint.transform.position,
+            spawnPoints[Random.Range(0, spawnPoints.Count)].transform.position,
             Quaternion.identity);
     }
 
@@ -22,7 +19,7 @@ public class NoteSpawner : MonoBehaviour
     {
         Instantiate(
             notes[1],
-            midNoteSpawnpoint.transform.position,
+            spawnPoints[Random.Range(0, spawnPoints.Count)].transform.position,
             Quaternion.identity);
     }
 
@@ -30,7 +27,7 @@ public class NoteSpawner : MonoBehaviour
     {
         Instantiate(
             notes[2],
-            highNoteSpawnpoint.transform.position,
+            spawnPoints[Random.Range(0, spawnPoints.Count)].transform.position,
             Quaternion.identity);
     }
 }

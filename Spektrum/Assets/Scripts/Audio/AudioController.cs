@@ -6,7 +6,12 @@ public class AudioController : MonoBehaviour
 {
     [Header("Components")]
     public AudioSource speaker;
-    public NoteSpawner spawner; 
+    public NoteSpawner spawner;
+    public AudioSource playerSpeaker;
+
+    [Header("Audio Delay")]
+    public float songBPM;
+    public float audioDelay;
 
     [Header("Gameplay")]
     public bool noteAvailable;
@@ -36,12 +41,18 @@ public class AudioController : MonoBehaviour
     private void Start()
     {
         noteAvailable = true;
+        noteCooldown = songBPM / 60f;
+        noteCooldown *= 0.25f;
+        noteCooldown *= 0.95f;
+
+        StartCoroutine(SongStartDelayRoutine());
     }
 
     // Update is called once per frame
     void Update()
     {
         AnalyzeAudio();
+        SpawnNote();
     }
 
     public void SpawnNote()
@@ -50,19 +61,16 @@ public class AudioController : MonoBehaviour
         {
             if (midAverage >= midThreshold)
             {
-                noteAvailable = false;
                 spawner.SpawnMidNote();
                 StartCoroutine(NoteCooldownRoutine());
             }
             else if (highAverage >= highThreshold)
             {
-                noteAvailable = false;
                 spawner.SpawnHighNote();
                 StartCoroutine(NoteCooldownRoutine());
             }
             else if (lowAverage >= lowThreshold)
             {
-                noteAvailable = false;
                 spawner.SpawnLowNote();
                 StartCoroutine(NoteCooldownRoutine());
             }
@@ -121,13 +129,18 @@ public class AudioController : MonoBehaviour
         lowAverage /= 85;
         midAverage /= 85;
         highAverage /= 85;
-
-        SpawnNote();
     }
 
     public IEnumerator NoteCooldownRoutine()
     {
+        noteAvailable = false;
         yield return new WaitForSeconds(noteCooldown);
         noteAvailable = true;
+    }
+
+    public IEnumerator SongStartDelayRoutine()
+    {
+        yield return new WaitForSeconds(audioDelay);
+        playerSpeaker.Play();
     }
 }

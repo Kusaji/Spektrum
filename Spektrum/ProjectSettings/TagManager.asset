@@ -6,6 +6,7 @@ TagManager:
   tags:
   - HitPoint
   - Note
+  - PlayerAudio
   layers:
   - Default
   - TransparentFX

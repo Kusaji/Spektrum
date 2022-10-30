@@ -11,6 +11,9 @@ public class AudioController : MonoBehaviour
 
     [Header("Audio Delay")]
     public float songBPM;
+    public enum noteLength { whole, half, quarter, eigth, sixteenth, thirtysecond}
+    public noteLength delayType;
+    public float noteType;
     public float audioDelay;
 
     [Header("Gameplay")]
@@ -21,6 +24,9 @@ public class AudioController : MonoBehaviour
     public float lowThreshold;
     public float midThreshold;
     public float highThreshold;
+    public float dynamicLowThreshold;
+    public float dynamicMidThreshold;
+    public float dynamicHighThreshold;
 
     [Header("Averages of Spectrums")]
     public float lowAverage;
@@ -42,39 +48,101 @@ public class AudioController : MonoBehaviour
     {
         noteAvailable = true;
         noteCooldown = songBPM / 60f;
-        noteCooldown *= 0.25f;
-        noteCooldown *= 0.95f;
+        SetNoteDelay();
+        //noteCooldown *= 0.95f;
+
+        dynamicLowThreshold = lowThreshold;
+        dynamicMidThreshold = midThreshold;
+        dynamicHighThreshold = highThreshold;
 
         StartCoroutine(SongStartDelayRoutine());
+        StartCoroutine(NoteCooldownRoutine());
     }
 
     // Update is called once per frame
     void Update()
     {
         AnalyzeAudio();
-        SpawnNote();
+    }
+
+    void SetNoteDelay()
+    {
+        switch (delayType)
+        {
+            case noteLength.whole:
+                noteCooldown *= 1f;
+                break;
+            case noteLength.half:
+                noteCooldown *= 0.5f;
+                break;
+            case noteLength.quarter:
+                noteCooldown *= 0.25f;
+                break;
+            case noteLength.eigth:
+                noteCooldown *= 0.125f;
+                break;
+            case noteLength.sixteenth:
+                noteCooldown *= 0.0625f;
+                break;
+            case noteLength.thirtysecond:
+                noteCooldown *= 0.03125f;
+                break;
+        }
     }
 
     public void SpawnNote()
     {
-        if (noteAvailable)
+        if (midAverage >= dynamicMidThreshold)
         {
-            if (midAverage >= midThreshold)
+            dynamicMidThreshold += 2;
+            spawner.SpawnMidNote();
+        }
+
+        else if (highAverage >= dynamicHighThreshold)
+        {
+            if (dynamicMidThreshold > midThreshold)
             {
-                spawner.SpawnMidNote();
-                StartCoroutine(NoteCooldownRoutine());
+                dynamicMidThreshold -= 1;
             }
-            else if (highAverage >= highThreshold)
+
+            dynamicHighThreshold += 1;
+            spawner.SpawnHighNote();
+            //StartCoroutine(NoteCooldownRoutine());
+        }
+        else if (lowAverage >= dynamicLowThreshold)
+        {
+            if (dynamicMidThreshold > midThreshold)
             {
-                spawner.SpawnHighNote();
-                StartCoroutine(NoteCooldownRoutine());
+                dynamicMidThreshold -= 1;
             }
-            else if (lowAverage >= lowThreshold)
+
+            if (dynamicHighThreshold > highThreshold)
             {
-                spawner.SpawnLowNote();
-                StartCoroutine(NoteCooldownRoutine());
+                dynamicHighThreshold -= 1;
+            }
+
+            dynamicLowThreshold += 3;
+            spawner.SpawnLowNote();
+            //StartCoroutine(NoteCooldownRoutine());
+        }
+        else
+        {
+            if (dynamicHighThreshold > highThreshold)
+            {
+                dynamicHighThreshold -= 1;
+            }
+
+            if (dynamicMidThreshold > midThreshold)
+            {
+                dynamicMidThreshold -= 1;
+            }
+
+            if (dynamicLowThreshold > lowThreshold)
+            {
+                dynamicLowThreshold -= 1;
             }
         }
+
     }
 
     public void AnalyzeAudio()
@@ -133,9 +201,15 @@ public class AudioController : MonoBehaviour
 
     public IEnumerator NoteCooldownRoutine()
     {
-        noteAvailable = false;
-        yield return new WaitForSeconds(noteCooldown);
-        noteAvailable = true;
+        SpawnNote();
+
+        while (gameObject)
+        {
+            noteAvailable = false;
+            yield return new WaitForSeconds(noteCooldown);
+            SpawnNote();
+            noteAvailable = true;
+        }
     }
 
     public IEnumerator SongStartDelayRoutine()

@@ -4,11 +4,19 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController Instance;
+
     public PlayerScoreController score;
     public PlayerHealth health;
     public Vector3 mousePosition;
     public Camera playerCamera;
     // Start is called before the first frame update
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     void Start()
     {
         playerCamera = Camera.main;

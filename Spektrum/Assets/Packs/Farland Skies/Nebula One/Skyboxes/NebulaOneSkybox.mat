@@ -35,14 +35,14 @@ Material:
     m_Floats:
     - _DensityThresholdHigh: 0.8
     - _DensityThresholdLow: 0.4
-    - _Exposure: 0.65
+    - _Exposure: 1
     - _StarsBrightnesslMax: 1
     - _StarsBrightnesslMin: 0
     m_Colors:
     - _AmbientTint: {r: 0, g: 0.627451, b: 1, a: 0.02745098}
     - _BackgroundColor: {r: 0, g: 0, b: 0, a: 1}
     - _BasementTint: {r: 0, g: 0.627451, b: 1, a: 0.49803922}
-    - _RipplesDistortion: {r: -0.0056137005, g: 0.24993697, b: -0.0056122853, a: 0}
+    - _RipplesDistortion: {r: -0.1788989, g: -0.1746287, b: 0.12496354, a: 0}
     - _RipplesTint1: {r: 0, g: 0.627451, b: 1, a: 0.25882354}
     - _RipplesTint2: {r: 0.31764707, g: 0.14901961, b: 0.3372549, a: 0.31764707}
     - _StarsTint: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}

@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
         playerCamera = Camera.main;
         score = GetComponent<PlayerScoreController>();
         health = GetComponent<PlayerHealth>();
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = false;
     }
 
     // Update is called once per frame

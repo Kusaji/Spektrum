@@ -26,7 +26,7 @@ public class NoteController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            //Debug.Log(delayTime);
+            Debug.Log(delayTime);
         }
     }
 }

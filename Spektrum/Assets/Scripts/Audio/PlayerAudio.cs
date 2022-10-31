@@ -7,6 +7,8 @@ public class PlayerAudio : MonoBehaviour
     public AudioSource speaker;
 
     public static PlayerAudio Instance;
+    public Borodar.FarlandSkies.NebulaOne.SkyboxController skybox;
+    public float currentIntensity;
 
     [Header("Averages of Spectrums")]
     public float lowAverage;
@@ -92,5 +94,12 @@ public class PlayerAudio : MonoBehaviour
         lowAverage /= 85;
         midAverage /= 85;
         highAverage /= 85;
+
+        float delta = lowAverage - skybox.Exposure;
+        delta *= Time.deltaTime * 2;
+        currentIntensity += delta;
+
+
+        skybox.Exposure = Mathf.Clamp(currentIntensity, 0.25f, 3f);
     }
 }

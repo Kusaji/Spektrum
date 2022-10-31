@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.07842488, g: 0.20914254, b: 0.35932794, a: 1}
+  m_IndirectSpecularColor: {r: 0.07837016, g: 0.20489582, b: 0.35427207, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -134,6 +134,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SkyboxController
       objectReference: {fileID: 0}
+    - target: {fileID: 1000013154561054, guid: dfcf04dadf8544f478abd03debf5db69, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4000011985611204, guid: dfcf04dadf8544f478abd03debf5db69, type: 3}
       propertyPath: m_RootOrder
       value: 12
@@ -227,6 +231,10 @@ PrefabInstance:
     - target: {fileID: 1000010709406708, guid: dc6d395b504b21a4a8dfec3bf685f15d, type: 3}
       propertyPath: m_Name
       value: SkyboxAnimator
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010709406708, guid: dc6d395b504b21a4a8dfec3bf685f15d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4000013700631110, guid: dc6d395b504b21a4a8dfec3bf685f15d, type: 3}
       propertyPath: m_RootOrder
@@ -505,7 +513,7 @@ Transform:
   m_GameObject: {fileID: 231484635}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.25, y: 1.5584, z: 35.0171}
-  m_LocalScale: {x: 17.4999, y: 4.6170063, z: 1.426174}
+  m_LocalScale: {x: 17.4999, y: 5.55, z: 1.426174}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
@@ -715,12 +723,17 @@ Transform:
   m_Father: {fileID: 1387201140}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &542434459 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1000013154561054, guid: dfcf04dadf8544f478abd03debf5db69, type: 3}
+  m_PrefabInstance: {fileID: 124412530}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &542434460 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114000011685073128, guid: dfcf04dadf8544f478abd03debf5db69, type: 3}
   m_PrefabInstance: {fileID: 124412530}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 542434459}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a79b8f1170e8f464fb62876752650580, type: 3}
@@ -966,8 +979,8 @@ MonoBehaviour:
   speaker: {fileID: 702810501}
   spawner: {fileID: 702810503}
   playerSpeaker: {fileID: 1024710603}
-  songBPM: 140
-  delayType: 4
+  songBPM: 128
+  delayType: 3
   noteType: 0.0625
   audioDelay: 1.61
   noteAvailable: 0
@@ -1509,7 +1522,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -8171298388596489760, guid: ddf1509ea28d31745ae321ca944551bd, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 1b0cd0aa62848da40af497fb4f4b6410, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 5b9e8bc94eac6ad41a56ccf3e6324d66, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.3
   m_Pitch: 1
@@ -2618,7 +2631,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: ddf1509ea28d31745ae321ca944551bd, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 1b0cd0aa62848da40af497fb4f4b6410, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 5b9e8bc94eac6ad41a56ccf3e6324d66, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.7
   m_Pitch: 1
@@ -2731,6 +2744,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speaker: {fileID: 0}
+  skyboxController: {fileID: 542434459}
+  skyboxAnimator: {fileID: 2080294700}
   skybox: {fileID: 542434460}
   currentIntensity: 0
   lowAverage: 0
@@ -13074,6 +13089,11 @@ Transform:
   m_Father: {fileID: 751442676}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!1 &2080294700 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1000010709406708, guid: dc6d395b504b21a4a8dfec3bf685f15d, type: 3}
+  m_PrefabInstance: {fileID: 141112952}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2097412919
 GameObject:
   m_ObjectHideFlags: 0

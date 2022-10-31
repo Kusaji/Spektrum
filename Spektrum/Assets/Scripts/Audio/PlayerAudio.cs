@@ -7,6 +7,8 @@ public class PlayerAudio : MonoBehaviour
     public AudioSource speaker;
 
     public static PlayerAudio Instance;
+    public GameObject skyboxController;
+    public GameObject skyboxAnimator;
     public Borodar.FarlandSkies.NebulaOne.SkyboxController skybox;
     public float currentIntensity;
 
@@ -34,6 +36,8 @@ public class PlayerAudio : MonoBehaviour
     private void Start()
     {
         speaker = GetComponent<AudioSource>();
+        skyboxController.SetActive(true);
+        skyboxAnimator.SetActive(true);
     }
 
     // Update is called once per frame

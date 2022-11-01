@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.07837016, g: 0.20489582, b: 0.35427207, a: 1}
+  m_IndirectSpecularColor: {r: 0.04663425, g: 0.1303797, b: 0.22716847, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -979,8 +979,8 @@ MonoBehaviour:
   speaker: {fileID: 702810501}
   spawner: {fileID: 702810503}
   playerSpeaker: {fileID: 1024710603}
-  songBPM: 128
-  delayType: 3
+  songBPM: 165
+  delayType: 4
   noteType: 0.0625
   audioDelay: 1.61
   noteAvailable: 0
@@ -1522,7 +1522,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -8171298388596489760, guid: ddf1509ea28d31745ae321ca944551bd, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 5b9e8bc94eac6ad41a56ccf3e6324d66, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 953e6901ede87f64a9fff025378b927e, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.3
   m_Pitch: 1
@@ -2631,7 +2631,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: ddf1509ea28d31745ae321ca944551bd, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 5b9e8bc94eac6ad41a56ccf3e6324d66, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 953e6901ede87f64a9fff025378b927e, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.7
   m_Pitch: 1
